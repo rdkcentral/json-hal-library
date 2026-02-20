@@ -58,6 +58,5 @@
     "type": "cmake",
     "configure_options_file": "cov_docker_script/configure_options.conf"
     }
-
   }
 }
