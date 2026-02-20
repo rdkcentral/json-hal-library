@@ -35,7 +35,6 @@
         "name": "nlohmann-json",
         "repo": "https://github.com/nlohmann/json.git",
 	"branch": "master",
-	"commit": "4f8fba14066156b73f1189a2b8bd568bde5284c5",
         "header_paths": [
           { "source": "single_include/nlohmann", "destination": "$HOME/usr/include/rdkb/nlohmann" },
 	  { "source": "../json-c/build", "destination": "$HOME/usr/include/rdkb" }
