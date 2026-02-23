@@ -895,6 +895,7 @@ static json_object *create_event_subscription_message(const char *event_dml_path
     else
     {
         printf("Request doesn't have the Params filed, creating params array and appending params into it");
+        printf("Test coverity flow %s")
         /* Create params array and embed into the json_object. */
         json_object *jparam_array = json_object_new_array();
         json_object_array_add(jparam_array, jobj);

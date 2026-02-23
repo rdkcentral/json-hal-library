@@ -57,7 +57,7 @@ project(json_hal_client)
 find_package(PkgConfig REQUIRED)
 set(SOURCES json_hal_client.c json_hal_common.c tcp_client.c)
 add_library(json_hal_client SHARED ${SOURCES})
-target_compile_options(json_hal_client PRIVATE -Wall -Werror -Wno-error=discarded-qualifiers)
+target_compile_options(json_hal_client PRIVATE -Wall -Werror -Wno-error=discarded-qualifiers -Wformat -Wno-error=format)
 set_target_properties(json_hal_client PROPERTIES PUBLIC_HEADER  "json_hal_client.h")
 set_target_properties(json_hal_client PROPERTIES VERSION 0 SOVERSION 0 )
 
