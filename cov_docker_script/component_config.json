@@ -1,0 +1,61 @@
+{
+  "_comment": "Component Build Configuration for Coverity/Native Builds",
+  "_version": "2.0",
+  "_description": "Defines dependencies and build settings for the native component",
+  "dependencies": {
+    "_comment": "External repositories needed by this component",
+    "repos": [
+      {
+        "name": "json-c",
+        "repo": "https://github.com/json-c/json-c.git",
+        "branch": "json-c-0.15-20200726",
+  	  "header_paths": [
+          { "source": "../json-c", "destination": "$HOME/usr/include/rdkb/json-c" }
+        ],
+        "build": {
+          "type": "cmake",
+          "build_dir": "build",
+          "cmake_flags": "-DCMAKE_INSTALL_PREFIX=$HOME/usr -DCMAKE_PREFIX_PATH=/usr -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release"
+        }
+      },
+      {
+        "name": "json-schema-validator",
+        "repo": "https://github.com/pboettch/json-schema-validator.git",
+        "branch": "main",
+        "header_paths": [
+          { "source": "src/nlohmann", "destination": "$HOME/usr/include/rdkb/nlohmann" }
+        ],
+        "build": {
+          "type": "cmake",
+          "build_dir": "build",
+          "cmake_flags": "-DCMAKE_INSTALL_PREFIX=$HOME/usr/local -Dnlohmann_json_DIR=$HOME/usr/ -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release"
+        }
+      },
+      {
+        "name": "nlohmann-json",
+        "repo": "https://github.com/nlohmann/json.git",
+	"branch": "master",
+        "header_paths": [
+          { "source": "single_include/nlohmann", "destination": "$HOME/usr/include/rdkb/nlohmann" },
+	  { "source": "../json-c/build", "destination": "$HOME/usr/include/rdkb" }
+        ],
+        "build": {
+          "type": "cmake",
+          "build_dir": "build",
+          "cmake_flags": "-DCMAKE_INSTALL_PREFIX=$HOME/usr/local -DCMAKE_BUILD_TYPE=Release -DJSON_BuildTests=OFF"
+        }
+      }
+    ]
+  },
+
+  "native_component": {
+    "_comment": "Configuration for the main component being built",
+    "name": "json-hal-library",
+    "include_path": "$HOME/usr/include/rdkb/",
+    "lib_output_path": "$HOME/usr/local/lib/",
+    "build": {
+    "type": "cmake",
+    "configure_options_file": "cov_docker_script/configure_options.conf"
+    }
+  }
+}
