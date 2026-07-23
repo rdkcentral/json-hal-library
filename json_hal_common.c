@@ -29,6 +29,13 @@ int json_hal_get_param(json_object *jmsg, int index, eActionType action, hal_par
     json_object *jparam = NULL;
     json_object *jparamobject = NULL;
 
+
+/* ----------- INTENTIONAL MEMORY LEAK FOR COVERITY TEST ----------- */
+    char *leak = malloc(256);     // allocated memory, never freed
+    leak[0] = 'A';                // prevent unused-variable warnings
+    /* no free(leak);  <-- intentional leak */
+    /* --------------------------------------------------------------- */
+
     const char *param_type = NULL;
 
     if(jmsg == NULL || param == NULL) {
